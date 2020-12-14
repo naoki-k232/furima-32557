@@ -2,16 +2,16 @@
 
 ## users 
 
-|Column          |Type    |Options       |
-|----------------|--------|--------------|
-| email          | string | null: false, unique: true |
-| encrypted_password | string | null: false |
-| nickname       | string | null: false |
-| lastname       | string | null: false |
-| firstname      | string | null: false |
-| lastnamehuri   | string | null: false |
-| firastnamehuri | string | null: false |
-| birthday       | date   | null: false |
+|Column              |Type    |Options                    |
+|--------------------|--------|---------------------------|
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| nickname           | string | null: false               |
+| lastname           | string | null: false               |
+| firstname          | string | null: false               |
+| lastnamehuri       | string | null: false               |
+| firastnamehuri     | string | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 has_many : items
