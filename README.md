@@ -4,7 +4,7 @@
 
 |Column          |Type    |Options       |
 |----------------|--------|--------------|
-| email          | string | unique: true |
+| email          | string | null: false, unique: true |
 | encrypted_password | string | null: false |
 | nickname       | string | null: false |
 | lastname       | string | null: false |
@@ -26,7 +26,7 @@ has_many : records
 | category_id         | integer    | null: false                    |
 | produce_condition_id| integer    | null: false                    |
 | shipping_charges_id | integer    | null: false                    |
-| shipping_area_id    | integer    | null: false                    |
+| prefecture_id       | integer    | null: false                    |
 | days_to_delivery_id | integer    | null: false                    |
 | price               | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
@@ -44,7 +44,7 @@ has_one    : record
 
 ### Association
 belongs_to : user
-has_one    : item
+belongs_to : item
 has_one    : address
 
 ## addresses
