@@ -1,24 +1,63 @@
-# README
+#　テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users 
 
-Things you may want to cover:
+|Column              |Type    |Options                    |
+|--------------------|--------|---------------------------|
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| nickname           | string | null: false               |
+| lastname           | string | null: false               |
+| firstname          | string | null: false               |
+| lastnamehuri       | string | null: false               |
+| firastnamehuri     | string | null: false               |
+| birthday           | date   | null: false               |
 
-* Ruby version
+### Association
+has_many : items
+has_many : records
 
-* System dependencies
+## items 
 
-* Configuration
+|Column               |Type        |Options                         |
+|---------------------|------------|--------------------------------|
+| title               | string     | null: false                    |
+| produce_description | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| produce_condition_id| integer    | null: false                    |
+| shipping_charges_id | integer    | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| days_to_delivery_id | integer    | null: false                    |
+| price               | integer    | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
-* Database creation
+### Association
+belongs_to : user
+has_one    : record
 
-* Database initialization
+## records
 
-* How to run the test suite
+|Column               |Type        |Options                         |
+|---------------------|------------|--------------------------------|
+| user                | references | null: false, foreign_key: true |
+| item                | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+belongs_to : user
+belongs_to : item
+has_one    : address
 
-* Deployment instructions
+## addresses
 
-* ...
+|Column               |Type        |Options                         |
+|---------------------|------------|--------------------------------|
+| postal_code         | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| municipality        | string     | null: false                    |
+| address             | string     | null: false                    |
+| phone_number        | string     | null: false                    |
+| building_name       | string     |                                |
+| record              | references | null: false, foreign_key: true |
+
+### Association
+belongs_to : record
