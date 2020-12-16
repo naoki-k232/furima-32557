@@ -1,0 +1,2 @@
+class ProduceCondition < ApplicationRecord
+end
