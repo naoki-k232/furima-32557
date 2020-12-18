@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
-
-  with_options  presence: true do
+  with_options presence: true do
     validates     :title
     validates     :produce_description
     validates     :category_id
@@ -8,15 +7,14 @@ class Item < ApplicationRecord
     validates     :shipping_charges_id
     validates     :prefecture_id
     validates     :days_to_delivery_id
-    validates     :price, format: {with: /\A[0-9]+\z/, message:"半角数字でご入力ください。"}
+    validates     :price
     validates     :image
   end
-  
+
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   belongs_to       :user
   has_one_attached :image
-
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
@@ -24,5 +22,4 @@ class Item < ApplicationRecord
   belongs_to_active_hash :days_to_delivery
   belongs_to_active_hash :produce_condition
   belongs_to_active_hash :shipping_charge
-
 end

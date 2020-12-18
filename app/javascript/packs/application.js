@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 // require("turbolinks").start() 画面遷移を高速化するGemでHTML要素だけを読み取って表示するため、JavaScriptファイルが読み込まい可能性がある
 require("@rails/activestorage").start()
 require("channels")
+require("../item_price");
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
