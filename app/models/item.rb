@@ -21,5 +21,5 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :days_to_delivery
   belongs_to_active_hash :produce_condition
-  belongs_to_active_hash :shipping_charge
+  belongs_to_active_hash :shipping_charges
 end
