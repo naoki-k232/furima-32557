@@ -1,11 +1,11 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, only: :index
 
-  
+
   def index
     @item = Item.find(params[:item_id])
     @order_record = OrderRecord.new
-    if current_user.id == @item.user_id || @record_id == @item_id
+    if current_user.id == @item.user_id || !@record_id == @item_id
       redirect_to root_path
     end
   end
@@ -41,5 +41,4 @@ class RecordsController < ApplicationController
       currency:'jpy'
     )
   end
-
 end
