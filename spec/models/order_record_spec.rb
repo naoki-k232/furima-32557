@@ -56,13 +56,13 @@ RSpec.describe OrderRecord, type: :model do
       end
 
       it '電話番号に半角のハイフンがあると保存できない' do
-        @order_record.phone_number = 190-1234-5678
+        @order_record.phone_number = "190-1234-5678"
         @order_record.valid?
         expect(@order_record.errors.full_messages).to include("Phone number is invalid")
       end
 
       it '電話番号は11桁以内でないと保存できない' do
-        @order_record.phone_number = 000000000000
+        @order_record.phone_number = "000000000000"
         @order_record.valid?
         expect(@order_record.errors.full_messages).to include("Phone number is invalid")
       end
@@ -71,6 +71,18 @@ RSpec.describe OrderRecord, type: :model do
         @order_record.token = nil
         @order_record.valid?
         expect(@order_record.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idがないと保存できない' do
+        @order_record.user_id = nil
+        @order_record.valid?
+        expect(@order_record.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idがないと保存できない' do
+        @order_record.item_id = nil
+        @order_record.valid?
+        expect(@order_record.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

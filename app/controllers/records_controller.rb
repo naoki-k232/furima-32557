@@ -1,22 +1,19 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, only: :index
-
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @order_record = OrderRecord.new
-    if current_user.id == @item.user_id || !@record_id == @item_id
+    if current_user.id == @item.user.id || @item.record.present?
       redirect_to root_path
     end
   end
 
   def new
-    @order_record = OrderRecord.new
   end
 
   def create
     @order_record = OrderRecord.new(record_params)
-    @item = Item.find(params[:item_id])
     if @order_record.valid?
       pay_item
       @order_record.save
@@ -31,6 +28,10 @@ class RecordsController < ApplicationController
 
   def record_params
      params.require(:order_record).permit(:postal_code, :prefectures_id, :municipality, :house_number, :phone_number, :building_name).merge(user_id: current_user.id, token: params[:token], item_id: params[:item_id] )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
   def pay_item
