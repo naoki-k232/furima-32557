@@ -1,4 +1,5 @@
 class RecordsController < ApplicationController
+  before_action :move_to_index
   def index
     @item = Item.find(params[:item_id])
     @order_record = OrderRecord.new
@@ -41,7 +42,7 @@ class RecordsController < ApplicationController
 
   def move_to_index
     unless user_signed_in?
-      redirect_to action: :index
+      redirect_to new_user_session_path
     end
   end
 
