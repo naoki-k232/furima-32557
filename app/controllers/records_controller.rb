@@ -9,9 +9,6 @@ class RecordsController < ApplicationController
     end
   end
 
-  def new
-  end
-
   def create
     @order_record = OrderRecord.new(record_params)
     if @order_record.valid?
