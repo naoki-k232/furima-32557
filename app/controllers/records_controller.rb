@@ -1,9 +1,11 @@
 class RecordsController < ApplicationController
-  before_action :move_to_index
+  before_action :authenticate_user!, only: :index
+
+  
   def index
     @item = Item.find(params[:item_id])
     @order_record = OrderRecord.new
-    if current_user.id == @item.user_id
+    if current_user.id == @item.user_id || @record_id == @item_id
       redirect_to root_path
     end
   end
@@ -38,12 +40,6 @@ class RecordsController < ApplicationController
       card: record_params[:token],
       currency:'jpy'
     )
-  end
-
-  def move_to_index
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
   end
 
 end
